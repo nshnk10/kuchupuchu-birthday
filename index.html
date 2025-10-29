@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>28 Reasons — For My KuchuPuchu 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --dark-purple:#3b006e;
+    --accent:#8b5cf6;
+    --muted:#4b006e;
+    --ivory:#fffafc;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; background: linear-gradient(180deg,#d9b8ff 0%,#e9d7ff 40%,#f7eefc 100%); color:var(--muted); -webkit-font-smoothing:antialiased;}
+
+  /* header */
+  header{
+    text-align:center;
+    padding:72px 18px 48px;
+    background: linear-gradient(135deg,var(--dark-purple), #5b21b6);
+    color:var(--ivory);
+    border-bottom-left-radius:48% 10%;
+    border-bottom-right-radius:48% 10%;
+    box-shadow:0 8px 36px rgba(43,5,77,0.25);
+    position:relative;
+    overflow:hidden;
+  }
+  header h1{font-family:'Great Vibes',cursive;font-size:3.2rem;margin:0;color:#f7eaff;text-shadow:0 6px 18px rgba(0,0,0,0.22);}
+  header p{margin:10px 0 0;font-size:1.05rem;color:#f5eaff}
+
+  main{max-width:920px;margin:20px auto;padding:0 18px 120px;position:relative;z-index:2}
+  .card{
+    background:rgba(255,255,255,0.96);
+    border-radius:14px;
+    padding:20px;
+    box-shadow:0 10px 32px rgba(27,7,56,0.08);
+    margin-bottom:18px;
+  }
+  .message{font-size:1.02rem;line-height:1.66;text-align:center;color:var(--muted)}
+  .section-title { text-align:center; font-family:'Great Vibes',cursive; color:var(--accent); font-size:1.7rem; margin:6px 0 10px; }
+
+  /* audio toggle top-right */
+  .audio-toggle {
+    position:fixed;
+    top:14px;
+    right:14px;
+    z-index:11000;
+    background: rgba(255,255,255,0.9);
+    border-radius:999px;
+    padding:8px 10px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+    cursor:pointer;
+    font-weight:700;
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .audio-toggle button{ background:transparent;border:none; font-size:16px; cursor:pointer; }
+  .audio-toggle small{ font-size:12px; color:#3b006e; }
+
+  /* controls/button */
+  .controls{display:flex;gap:12px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+  .btn{
+    background:linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+    color:#fff;
+    padding:12px 18px;
+    border-radius:999px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(75,0,110,0.12), inset 0 1px 0 rgba(255,255,255,0.06);
+    transition:transform .22s cubic-bezier(.2,.9,.2,1), box-shadow .16s, opacity .16s;
+    border: none;
+  }
+  .btn:active{transform:translateY(3px)}
+  .btn.primary{background:linear-gradient(90deg,var(--accent), #a07bff);}
+  .btn[disabled]{opacity:0.65;cursor:default}
+
+  .btn.bonus {
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid var(--accent);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  }
+  .btn.bonus:hover{ background: var(--accent); color:#fff; }
+
+  /* gallery: single column, each item centered, bigger square images */
+  .gallery{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:22px;
+    margin-top:18px;
+    align-items:start;
+    position:relative;
+  }
+  .memory{
+    border-radius:14px;
+    overflow:hidden;
+    background:#fffafa;
+    min-height:340px;
+    opacity:0;
+    transform: translateY(22px);
+    transition: opacity .6s cubic-bezier(.2,.9,.2,1), transform .6s cubic-bezier(.2,.9,.2,1);
+    box-shadow:0 12px 34px rgba(37,0,70,0.06);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:18px;
+  }
+  .memory.revealed{opacity:1;transform:none}
+  .memory img{
+    width: min(520px, 86%);
+    aspect-ratio: 1 / 1; /* square */
+    object-fit:cover;
+    border-radius:12px;
+    display:block;
+    box-shadow:0 8px 24px rgba(27,7,56,0.06);
+  }
+  .caption{padding:14px 12px;font-size:1.02rem;color:var(--muted);text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.02));width:100%;}
+
+  /* moving button wrapper style */
+  .moving-wrap { display:flex; justify-content:center; margin-top:12px; }
+
+  .final-area-center { display:flex; justify-content:center; margin-top:22px; }
+
+  /* bounce animation */
+  @keyframes bounceIn {
+    0% { transform: translateY(-16px) scale(.96); opacity:0; }
+    60% { transform: translateY(6px) scale(1.05); opacity:1; }
+    100% { transform: translateY(0) scale(1); opacity:1; }
+  }
+  .bounce { animation: bounceIn .6s cubic-bezier(.34,1.56,.64,1); }
+
+  /* popup centered */
+  .quote-bubble{
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%) scale(.98);
+    background:linear-gradient(180deg, #fff, #fff8ff);
+    border-radius:14px;
+    padding:20px 22px;
+    box-shadow:0 22px 48px rgba(45,8,80,0.2);
+    z-index:9998;
+    max-width:680px;
+    width:calc(100% - 56px);
+    text-align:center;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .22s ease, transform .28s cubic-bezier(.2,.9,.2,1);
+  }
+  .quote-bubble.show{opacity:1;pointer-events:auto;transform:translate(-50%,-46%) scale(1)}
+  .quote-bubble p{margin:0;font-weight:700;color:var(--dark-purple); font-size:1.12rem;}
+  .quote-bubble small{display:block;margin-top:8px;color:#6b4fa3;font-size:0.92rem}
+
+  /* confetti burst centered on popup */
+  .burst { position:fixed; left:50%; top:calc(50% + 80px); pointer-events:none; transform:translateX(-50%); z-index:9997; display:flex; gap:6px; flex-wrap:wrap; justify-content:center; align-items:center; }
+  .burst .tiny { display:inline-block; font-size:18px; opacity:0; transform: translateY(0) scale(.8); animation:burstMove .92s cubic-bezier(.18,.9,.26,1) forwards; }
+  @keyframes burstMove { 0% { opacity:1; transform: translateY(0) scale(.9) rotate(0deg); } 40% { opacity:1; transform: translateY(-42px) scale(1.06) rotate(18deg); } 100% { opacity:0; transform: translateY(-120px) scale(.7) rotate(140deg); } }
+
+  /* floats */
+  .floats-container { position:fixed; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index:4; overflow:hidden; }
+  .float-item { position:absolute; will-change: transform, opacity; pointer-events:none; font-size:22px; text-shadow:0 4px 12px rgba(0,0,0,0.12); opacity:0; }
+  @keyframes floatUpAndSway { 0% { transform: translateY(110vh) translateX(0) scale(.9) rotate(0deg); opacity:1; } 20% { opacity:1; } 100% { transform: translateY(-18vh) translateX(var(--sway, 0px)) scale(1.08) rotate(360deg); opacity:0; } }
+
+  /* localized popup hearts */
+  .popup-heart { position:fixed; pointer-events:none; font-size:20px; opacity:0; z-index:10001; transform-origin:center; will-change: transform, opacity; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+    .memory{ transition: none; opacity:1; transform:none; }
+    .float-item{ opacity:0; display:none; }
+    .quote-bubble{ transition:none; opacity:1; transform:none; }
+    .popup-heart{ display:none; }
+  }
+
+  footer{padding:20px;text-align:center;color:var(--muted);font-size:0.94rem}
+  @media (max-width:520px){ header h1{font-size:2.2rem} .quote-bubble{max-width:92%} }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Happy 28th Birthday, My KuchuPuchu 🎂💜</h1>
+  <p>You make the world brighter just by being in it.</p>
+</header>
+
+<!-- top-right audio toggle -->
+<div class="audio-toggle" id="audioToggle" title="Music: Perfect - Ed Sheeran">
+  <button id="audioBtn">🔇</button>
+  <small id="audioLabel">Music Off</small>
+</div>
+
+<main>
+  <section class="card message" aria-labelledby="msg">
+    <div id="msg" style="display:none">Main message</div>
+    <p class="message">
+      My sweetest KuchuPuchu,<br><br>
+      Today the universe celebrates <em>you</em> — the most beautiful soul it ever created.
+      Every smile of yours lights up my world, and every moment spent with you is my favorite story.
+      On your 28th birthday, I just want to remind you that you are magic — pure, radiant, and endlessly loved.
+      I hope your day sparkles with laughter, love, and everything your heart desires.
+      Forever your biggest fan and your forever person 💫💜
+    </p>
+  </section>
+
+  <section class="card quotes" aria-live="polite">
+    <div class="section-title">28 Reasons Why I Love You</div>
+    <p style="text-align:center; color:var(--muted); margin-top:6px;">Click the button to reveal each reason — the button will follow and bounce below each new reveal. 💜</p>
+
+    <!-- starting moving wrap -->
+    <div id="initialWrap" class="moving-wrap" aria-hidden="true">
+      <button id="revealBtn" class="btn primary" aria-controls="gallery">28 Reasons Why I Love You 💜</button>
+    </div>
+
+    <!-- gallery (single-column, square images) -->
+    <div id="gallery" class="gallery" aria-label="Photo gallery">
+      <!-- 28 square placeholders with reasons -->
+      <!-- You can replace each with window.__kuchu_replacePhoto(index, url, alt) -->
+      <div class="memory"><img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">1. I love how you make strangers feel like friends with a single smile.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">2. I love how you always know when I need a hug — even without words.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">3. I love the way your laughter turns my bad days into bearable ones.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">4. I love how you hold my hand like you mean it — with quiet strength.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">5. I love that you notice tiny things I do and still say 'thank you'.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">6. I love how you laugh at my worst jokes — full and unapologetic.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">7. I love your patience when I’m messy — you steady me gently.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">8. I love that ordinary days feel like adventures with you.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1525072124886-7f5a4f9be8b5?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">9. I love how you celebrate my small wins with honest joy.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">10. I love your fierce kindness — you defend with tenderness.</div></div>
+
+      <div class="memory"><img src="https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">11. I love that you tell me the truth — even when it’s hard.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">12. I love your curiosity — you make the world feel bigger and kinder.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">13. I love how you remember small details and tuck them into future conversations.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">14. I love that you walk beside me and make every path lighter.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1476865852071-1d4b3d6d5f86?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">15. I love how your presence is calming, like a warm cup on a chaotic morning.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">16. I love how you encourage me to try — and cheer when I do.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">17. I love our small rituals — they make our life ours.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1484981184820-2e84ea0e3d81?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">18. I love how you look at me when you think I don’t notice — I always do.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">19. I love your generosity — you give without counting and it humbles me.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">20. I love that you forgive easily and teach me to let go of small hurts.</div></div>
+
+      <div class="memory"><img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">21. I love how we make plans — even silly ones — and keep our promises to each other.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">22. I love that you are my calm and my anchor on stormy days.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">23. I love how you cheer for me with loud pride and tender support.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">24. I love that you share your imperfect parts — and make me feel safe to share mine.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">25. I love the little ways you say 'I care' — a note, a call, a warm cup left waiting.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">26. I love how you see me even on days I hide behind routine.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">27. I love that you pick me — again and again — even when it's not easy.</div></div>
+      <div class="memory"><img src="https://images.unsplash.com/photo-1509316785282-1e5b8ee3f4a3?q=80&w=1200&auto=format&fit=crop" alt=""><div class="caption">28. I love you for your whole mess and magnificence — I’m so glad you're mine.</div></div>
+    </div>
+
+    <!-- final area (centered) where Bonus appears -->
+    <div id="finalArea" class="final-area-center" style="display:none;"></div>
+  </section>
+</main>
+
+<!-- audio element (replace src with a valid URL to the mp3 you host / have rights to) -->
+<!-- IMPORTANT: You must host or provide a URL for the MP3 file you have rights to play.
+     Example: src="https://example.com/perfect-ed-sheeran.mp3" -->
+<audio id="bgAudio" loop crossorigin="anonymous">
+  <source src="perfect.mp3" type="audio/mpeg">
+  <!-- fallback text -->
+</audio>
+
+<!-- floats -->
+<div class="floats-container" id="floatsContainer" aria-hidden="true"></div>
+
+<!-- popup centered -->
+<div id="quoteBubble" class="quote-bubble" role="dialog" aria-live="polite" aria-hidden="true">
+  <p id="quoteText">You are my favorite yes.</p>
+  <small id="quoteSource"></small>
+</div>
+
+<!-- burst -->
+<div id="burst" class="burst" aria-hidden="true"></div>
+
+<footer>
+  Made with infinite 💜 by your forever admirer. You’re my favorite reason to smile every single day.
+</footer>
+
+<script>
+(function(){
+  // DOM refs
+  const revealBtn = document.getElementById('revealBtn');
+  const initialWrap = document.getElementById('initialWrap');
+  const gallery = Array.from(document.querySelectorAll('.memory'));
+  const finalArea = document.getElementById('finalArea');
+  const quoteBubble = document.getElementById('quoteBubble');
+  const quoteText = document.getElementById('quoteText');
+  const quoteSource = document.getElementById('quoteSource');
+  const burst = document.getElementById('burst');
+  const floatsContainer = document.getElementById('floatsContainer');
+
+  const audioEl = document.getElementById('bgAudio');
+  const audioBtn = document.getElementById('audioBtn');
+  const audioLabel = document.getElementById('audioLabel');
+  const audioToggle = document.getElementById('audioToggle');
+
+  let revealIndex = 0;
+  const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // BONUS messages
+  const BONUS = [
+    {t:"Because you make ordinary moments sacred.", s:"Bonus"},
+    {t:"Because your smile rewires the whole room.", s:"Bonus"},
+    {t:"Because I built a life in my head and you fit perfectly.", s:"Bonus"},
+    {t:"Because you choose me in my best and worst.", s:"Bonus"},
+    {t:"Because loving you is the easiest brave thing I do.", s:"Bonus"}
+  ];
+
+  /* ---------- AUDIO HANDLING ---------- */
+  // Try to autoplay the audio on load (may be blocked by browser).
+  function attemptAutoPlay() {
+    if (!audioEl) return;
+    audioEl.volume = 0.26; // soft
+    const p = audioEl.play();
+    if (p !== undefined) {
+      p.then(()=> {
+        // autoplay succeeded
+        audioBtn.textContent = '🔊';
+        audioLabel.textContent = 'Music On';
+      }).catch(()=> {
+        // autoplay blocked — show muted icon and allow user to toggle
+        audioBtn.textContent = '🔇';
+        audioLabel.textContent = 'Music Off';
+      });
+    }
+  }
+
+  // Toggle audio on user action
+  function toggleAudio() {
+    if (!audioEl) return;
+    if (audioEl.paused) {
+      audioEl.play().then(()=> {
+        audioBtn.textContent = '🔊';
+        audioLabel.textContent = 'Music On';
+      }).catch(()=> {
+        audioBtn.textContent = '🔇';
+        audioLabel.textContent = 'Music Off';
+      });
+    } else {
+      audioEl.pause();
+      audioBtn.textContent = '🔇';
+      audioLabel.textContent = 'Music Off';
+    }
+  }
+
+  // Audio toggle events
+  audioToggle.addEventListener('click', (e)=> {
+    // clicking the whole area toggles audio
+    toggleAudio();
+  });
+  // keyboard support
+  audioToggle.addEventListener('keyup', (e)=> { if (e.key === 'Enter' || e.key === ' ') toggleAudio(); });
+
+  // Attempt autoplay on page load
+  window.addEventListener('load', () => {
+    attemptAutoPlay();
+  });
+
+  /* ---------- BUTTON MOVEMENT & REVEAL ---------- */
+  // create bonus button (centered)
+  function createBonusButtonCentered(){
+    const btn = document.createElement('button');
+    btn.className = 'btn bonus bounce';
+    btn.id = 'bonusBtn';
+    btn.textContent = 'Bonus Point 🎁';
+    btn.addEventListener('click', onBonusClick);
+    btn.addEventListener('keyup', (e)=> { if(e.key==='Enter' || e.key===' ') onBonusClick(); });
+    return btn;
+  }
+
+  // move the revealBtn under a card element
+  function moveButtonBelow(cardEl){
+    // fade out slightly
+    revealBtn.style.transition = 'transform .18s ease, opacity .18s ease';
+    revealBtn.style.opacity = '0';
+    revealBtn.style.transform = 'translateY(-8px) scale(.98)';
+    setTimeout(()=> {
+      // clean previous moving-wrap(s) that contain revealBtn to avoid duplicates
+      // (we'll move revealBtn into a new wrap placed after cardEl)
+      const currentWrap = document.createElement('div');
+      currentWrap.className = 'moving-wrap';
+      cardEl.parentNode.insertBefore(currentWrap, cardEl.nextSibling);
+      currentWrap.appendChild(revealBtn);
+
+      // auto-scroll card into view center
+      if (!reducedMotion) cardEl.scrollIntoView({behavior:'smooth', block:'center'});
+      else cardEl.scrollIntoView({behavior:'auto', block:'center'});
+
+      // bounce in
+      requestAnimationFrame(()=> {
+        revealBtn.classList.remove('bounce');
+        void revealBtn.offsetWidth;
+        revealBtn.style.opacity = '1';
+        revealBtn.style.transform = 'translateY(0) scale(1)';
+        revealBtn.classList.add('bounce');
+      });
+    }, 200);
+  }
+
+  function revealNext(){
+    if (revealIndex >= gallery.length) {
+      // nothing left
+      revealBtn.disabled = true;
+      revealBtn.textContent = 'All 28 reasons revealed 💜';
+      revealBtn.style.opacity = '0.9';
+      return;
+    }
+
+    const card = gallery[revealIndex];
+    card.classList.add('revealed');
+
+    if (!reducedMotion && card.animate) {
+      card.animate([{ transform: 'translateY(10px) scale(.995)'},{ transform:'translateY(0) scale(1)'}], {duration:360, easing:'cubic-bezier(.2,.9,.2,1)'});
+    }
+
+    // place button below revealed card
+    moveButtonBelow(card);
+
+    revealIndex++;
+
+    // after final reveal show centered Bonus
+    if (revealIndex >= gallery.length) {
+      setTimeout(()=> {
+        // hide reveal button
+        if (revealBtn && revealBtn.parentNode) revealBtn.style.display = 'none';
+
+        // add centered bonus button
+        const bonusBtn = createBonusButtonCentered();
+        finalArea.appendChild(bonusBtn);
+        finalArea.style.display = 'flex';
+
+        if (!reducedMotion) {
+          bonusBtn.classList.add('bounce');
+          bonusBtn.scrollIntoView({behavior:'smooth', block:'center'});
+        } else {
+          bonusBtn.scrollIntoView({behavior:'auto', block:'center'});
+        }
+      }, 520);
+    }
+  }
+
+  revealBtn.addEventListener('click', revealNext);
+  revealBtn.addEventListener('keyup', (e)=> { if(e.key==='Enter' || e.key===' ') revealNext(); });
+
+  /* ---------- BONUS POPUP (centered) ---------- */
+  function onBonusClick(){
+    const b = BONUS[Math.floor(Math.random()*BONUS.length)];
+    quoteText.textContent = b.t;
+    quoteSource.textContent = b.s;
+
+    // show centered popup
+    quoteBubble.classList.add('show');
+    quoteBubble.setAttribute('aria-hidden','false');
+
+    // spawn popup hearts around center
+    spawnPopupHeartsCentered();
+
+    if (!reducedMotion) runBurstCentered();
+
+    // set up "click anywhere to close" — but wait a tick to avoid immediate close
+    setTimeout(()=> {
+      function closeOnClick(e){
+        // close popup and remove handler
+        quoteBubble.classList.remove('show');
+        quoteBubble.setAttribute('aria-hidden','true');
+        document.removeEventListener('click', closeOnClick);
+      }
+      document.addEventListener('click', closeOnClick);
+    }, 150);
+  }
+
+  // spawn small hearts around center
+  function spawnPopupHeartsCentered(){
+    if (reducedMotion) return;
+    const centerX = window.innerWidth/2;
+    const startY = window.innerHeight/2 + 30;
+    const emojis = ['❤️','💜','🌸','✨','💕','🐶','🐱'];
+    const count = 14;
+    for (let i=0;i<count;i++){
+      const e = document.createElement('div');
+      e.className = 'popup-heart';
+      e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      const offsetX = (Math.random()*320 - 160);
+      e.style.left = (centerX + offsetX) + 'px';
+      e.style.top = (startY + Math.random()*18) + 'px';
+      const size = 12 + Math.random()*28;
+      e.style.fontSize = size + 'px';
+      document.body.appendChild(e);
+
+      const dur = 900 + Math.random()*900;
+      e.animate([
+        { transform: `translateY(0px) rotate(${Math.random()*40-20}deg) scale(.9)`, opacity:1 },
+        { transform: `translateY(-140px) translateX(${(Math.random()*100-50)}px) rotate(${Math.random()*360-180}deg) scale(1.1)`, opacity:0 }
+      ], { duration: dur, easing: 'cubic-bezier(.2,.9,.2,1)'});
+
+      setTimeout(()=> { if (e && e.parentNode) e.remove(); }, dur + 60);
+    }
+  }
+
+  // confetti burst centered on popup
+  function runBurstCentered(){
+    burst.innerHTML = '';
+    const emojis = ['❤️','💜','🌸','✨','💕','🎉'];
+    const count = 18;
+    for (let i=0;i<count;i++){
+      const s = document.createElement('span');
+      s.className = 'tiny';
+      s.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      s.style.fontSize = (12 + Math.random()*22) + 'px';
+      s.style.animationDelay = (Math.random()*220) + 'ms';
+      s.style.marginLeft = (Math.random()*200 - 100) + 'px';
+      burst.appendChild(s);
+    }
+    // burst is centered via CSS; clear after animation
+    setTimeout(()=> burst.innerHTML = '', 1500);
+  }
+
+  /* ---------- FLOATING ITEMS ---------- */
+  const floatChars = ['❤️','💜','🌸','✨','🐶','🐱','💕'];
+
+  function spawnFloat(){
+    if (reducedMotion) return;
+    const el = document.createElement('div');
+    el.className = 'float-item';
+    el.textContent = floatChars[Math.floor(Math.random()*floatChars.length)];
+    const size = 14 + Math.random()*30; el.style.fontSize = size + 'px';
+    const left = 4 + Math.random()*92; el.style.left = left + 'vw';
+    const top = 60 + Math.random()*40; el.style.top = top + 'vh';
+    const sway = (Math.random()*240 - 120) + 'px'; el.style.setProperty('--sway', sway);
+    const duration = 6000 + Math.random()*9000;
+    const delay = Math.random()*800;
+    el.style.animation = `floatUpAndSway ${duration}ms linear ${delay}ms forwards`;
+    floatsContainer.appendChild(el);
+    setTimeout(()=> { if (el && el.parentNode) el.remove(); }, duration + delay + 600);
+  }
+
+  for (let i=0;i<8;i++) setTimeout(spawnFloat, i*220);
+  let floatInterval = null;
+  if (!reducedMotion) floatInterval = setInterval(spawnFloat, 900 + Math.random()*700);
+  document.addEventListener('visibilitychange', ()=> {
+    if (document.hidden) { if (floatInterval) clearInterval(floatInterval); floatInterval = null; }
+    else { if (!reducedMotion && !floatInterval) floatInterval = setInterval(spawnFloat, 900 + Math.random()*700); }
+  });
+
+  /* ---------- UTIL: replace photos easily ---------- */
+  // usage: __kuchu_replacePhoto(0, 'https://example.com/photo1.jpg', 'Alt text')
+  window.__kuchu_replacePhoto = (i, url, alt) => {
+    if (i < 0 || i >= gallery.length) return;
+    const img = gallery[i].querySelector('img');
+    if (url) img.src = url;
+    if (alt) img.alt = alt;
+  };
+
+  // Expose simple methods for debugging/testing
+  window.__revealNext = revealNext;
+  window.__revealAll = ()=> { while(revealIndex < gallery.length) revealNext(); };
+
+})();
+</script>
+</body>
+</html>
